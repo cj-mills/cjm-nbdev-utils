@@ -1,0 +1,11 @@
+name: cjm-nbdev-utils-dev
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.11
+  - pip
+  - pip:
+      - -e ".[dev]"
+      - fastcore
+      - cjm_nbdev_docments
+      - cjm_nbdev_overview
