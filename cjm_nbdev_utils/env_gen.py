@@ -48,7 +48,7 @@ def get_section(
 
 # %% ../nbs/env_gen.ipynb 9
 def split_list(
-    val: str | None  # String value to split (can be None)
+    val: str=None  # String value to split (can be None)
 ) -> List[str]:  # List of unique, non-empty strings preserving order
     "Split space- and/or comma-separated lists while respecting quotes."
     if not val: 
