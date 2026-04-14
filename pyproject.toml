@@ -1,3 +1,34 @@
 [build-system]
-requires = ["setuptools>=64.0"]
+requires = ["setuptools>=64"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "cjm-nbdev-utils"
+dynamic = ["version"]
+description = "Miscellaneous utilities for nbdev projects."
+readme = "README.md"
+requires-python = ">=3.11"
+license = {text = "Apache-2.0"}
+authors = [{name = "Christian J. Mills", email = "9126128+cj-mills@users.noreply.github.com"}]
+keywords = ['nbdev', 'jupyter', 'notebook', 'python']
+classifiers = ["Natural Language :: English", "Intended Audience :: Developers", "Development Status :: 3 - Alpha", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3 :: Only"]
+dependencies = ['fastcore', 'cjm_nbdev_docments', 'cjm_nbdev_overview']
+
+[project.urls]
+Repository = "https://github.com/cj-mills/cjm-nbdev-utils"
+Documentation = "https://cj-mills.github.io/cjm-nbdev-utils"
+
+[project.entry-points.nbdev]
+cjm_nbdev_utils = "cjm_nbdev_utils._modidx:d"
+
+
+[project.scripts]
+gen_env_from_settings = "cjm_nbdev_utils.env_gen:main"
+
+[tool.setuptools.dynamic]
+version = {attr = "cjm_nbdev_utils.__version__"}
+
+[tool.setuptools.packages.find]
+include = ["cjm_nbdev_utils"]
+
+[tool.nbdev]
