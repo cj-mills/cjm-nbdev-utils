@@ -29,6 +29,6 @@ gen_env_from_settings = "cjm_nbdev_utils.env_gen:main"
 version = {attr = "cjm_nbdev_utils.__version__"}
 
 [tool.setuptools.packages.find]
-include = ["cjm_nbdev_utils"]
+include = ["cjm_nbdev_utils*"]
 
 [tool.nbdev]
