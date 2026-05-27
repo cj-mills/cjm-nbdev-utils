@@ -1,0 +1,122 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "cjm-nbdev-utils",
+    "section": "",
+    "text": "pip install cjm_nbdev_utils",
+    "crumbs": [
+      "cjm-nbdev-utils"
+    ]
+  },
+  {
+    "objectID": "index.html#install",
+    "href": "index.html#install",
+    "title": "cjm-nbdev-utils",
+    "section": "",
+    "text": "pip install cjm_nbdev_utils",
+    "crumbs": [
+      "cjm-nbdev-utils"
+    ]
+  },
+  {
+    "objectID": "index.html#project-structure",
+    "href": "index.html#project-structure",
+    "title": "cjm-nbdev-utils",
+    "section": "Project Structure",
+    "text": "Project Structure\nnbs/\n└── env_gen.ipynb # Generate an environment.yml from an nbdev-style settings.ini\nTotal: 1 notebook",
+    "crumbs": [
+      "cjm-nbdev-utils"
+    ]
+  },
+  {
+    "objectID": "index.html#module-dependencies",
+    "href": "index.html#module-dependencies",
+    "title": "cjm-nbdev-utils",
+    "section": "Module Dependencies",
+    "text": "Module Dependencies\ngraph LR\n    env_gen[env_gen&lt;br/&gt;env_gen]\n\nNo cross-module dependencies detected.",
+    "crumbs": [
+      "cjm-nbdev-utils"
+    ]
+  },
+  {
+    "objectID": "index.html#cli-reference",
+    "href": "index.html#cli-reference",
+    "title": "cjm-nbdev-utils",
+    "section": "CLI Reference",
+    "text": "CLI Reference\n\ngen_env_from_settings Command\nusage: gen_env_from_settings [-h] [--settings SETTINGS] [--name NAME]\n                             [--extras EXTRAS] [--no-editable]\n                             [--include-pip-reqs] [--no-include-pip-reqs]\n                             [--out OUT] [--stdout]\n\nGenerate environment.yml from nbdev settings.ini\n\noptions:\n  -h, --help            show this help message and exit\n  --settings SETTINGS   Path to settings.ini\n  --name NAME           Environment name override\n  --extras EXTRAS       Editable pip extras to install, e.g. 'dev' or\n                        'dev,docs'. Use '' to install no extras.\n  --no-editable         Do not include editable install (-e .).\n  --include-pip-reqs    Also include 'requirements' and 'dev_requirements'\n                        from settings.ini in pip section.\n  --no-include-pip-reqs\n                        Do not include pip requirements from settings.ini\n                        (default).\n  --out OUT             Output file path.\n  --stdout              Write YAML to stdout instead of a file.\n\nFor detailed help on any command, use gen_env_from_settings &lt;command&gt; --help.",
+    "crumbs": [
+      "cjm-nbdev-utils"
+    ]
+  },
+  {
+    "objectID": "index.html#module-overview",
+    "href": "index.html#module-overview",
+    "title": "cjm-nbdev-utils",
+    "section": "Module Overview",
+    "text": "Module Overview\nDetailed documentation for each module in the project:\n\nenv_gen (env_gen.ipynb)\n\nGenerate an environment.yml from an nbdev-style settings.ini\n\n\nImport\nfrom cjm_nbdev_utils.env_gen import (\n    DEFAULT_ENV_NAME,\n    DEFAULT_CHANNELS,\n    read_settings,\n    get_section,\n    split_list,\n    normalize_python_spec,\n    collect_values,\n    emit_yaml,\n    main\n)\n\n\nFunctions\ndef read_settings(\n    path: str  # Path to settings.ini file\n) -&gt; configparser.ConfigParser:  # Configured ConfigParser object\n    \"Read settings.ini file with percent-style interpolation.\"\ndef get_section(\n    cp: configparser.ConfigParser  # ConfigParser object\n)\n    \"Get configuration section from ConfigParser. nbdev puts keys at top-level (DEFAULT). Falls back to first section if present.\"\ndef split_list(\n    val: str | None  # String value to split (can be None)\n) -&gt; List[str]:  # List of unique, non-empty strings preserving order\n    \"Split space- and/or comma-separated lists while respecting quotes.\"\ndef normalize_python_spec(\n    min_py: str=None  # Minimum Python version string\n) -&gt; str:  # Normalized Python specification string or None\n    \"Normalize Python version specification for conda. Accepts \"&gt;=3.10\", \"3.10\", \"3.9.*\", etc. If bare like \"3.10\", makes it \"&gt;=3.10\".\"\ndef collect_values(\n    cfg    # Configuration section dictionary - TODO: Add type hint\n) -&gt; Tuple[str, List[str], List[str], List[str], List[str]]:  # Tuple of (env_name, channels, conda_reqs, pip_reqs, dev_pip_reqs)\n    \"Collect configuration values from settings.\"\ndef emit_yaml(\n    name: str,    # Environment name\n    channels: List[str],    # List of conda channels\n    conda_deps: List[str],    # List of conda dependencies\n    pip_lines: List[str],    # List of pip packages\n) -&gt; str:  # YAML formatted string\n    \"Generate environment.yml content. Manual YAML emitter to avoid extra dependencies.\"\ndef main()\n    \"\"\"\n    Generate environment.yml from nbdev settings.ini.\n    \n    Reads: lib_name, min_python, conda_channels, conda_requirements,\n           requirements, dev_requirements (all optional).\n    Writes: environment.yml (or stdout).\n    Adds an editable pip install (-e \".[EXTRAS]\") by default.\n    \n    Examples:\n        python gen_env_from_settings.py\n        python gen_env_from_settings.py --name myproj-dev --extras dev,docs --out env.yml\n        python gen_env_from_settings.py --no-editable --stdout\n        python gen_env_from_settings.py --no-include-pip-reqs\n    \"\"\"\n\n\nVariables\nDEFAULT_ENV_NAME = 'nbdev-env'\nDEFAULT_CHANNELS = [1 items]",
+    "crumbs": [
+      "cjm-nbdev-utils"
+    ]
+  },
+  {
+    "objectID": "env_gen.html",
+    "href": "env_gen.html",
+    "title": "env_gen",
+    "section": "",
+    "text": "def read_settings(\n    path:str, # Path to settings.ini file\n)-&gt;configparser.ConfigParser: # Configured ConfigParser object\n\nRead settings.ini file with percent-style interpolation.\n\n\n\n\n\ndef get_section(\n    cp:configparser.ConfigParser, # ConfigParser object\n):\n\nGet configuration section from ConfigParser. nbdev puts keys at top-level (DEFAULT). Falls back to first section if present.",
+    "crumbs": [
+      "env_gen"
+    ]
+  },
+  {
+    "objectID": "env_gen.html#reading-settings",
+    "href": "env_gen.html#reading-settings",
+    "title": "env_gen",
+    "section": "",
+    "text": "def read_settings(\n    path:str, # Path to settings.ini file\n)-&gt;configparser.ConfigParser: # Configured ConfigParser object\n\nRead settings.ini file with percent-style interpolation.\n\n\n\n\n\ndef get_section(\n    cp:configparser.ConfigParser, # ConfigParser object\n):\n\nGet configuration section from ConfigParser. nbdev puts keys at top-level (DEFAULT). Falls back to first section if present.",
+    "crumbs": [
+      "env_gen"
+    ]
+  },
+  {
+    "objectID": "env_gen.html#utility-functions",
+    "href": "env_gen.html#utility-functions",
+    "title": "env_gen",
+    "section": "Utility Functions",
+    "text": "Utility Functions\n\n\nsplit_list\n\ndef split_list(\n    val:str=None, # String value to split (can be None)\n)-&gt;List[str]: # List of unique, non-empty strings preserving order\n\nSplit space- and/or comma-separated lists while respecting quotes.\n\n\n\nnormalize_python_spec\n\ndef normalize_python_spec(\n    min_py:str=None, # Minimum Python version string\n)-&gt;str: # Normalized Python specification string or None\n\nNormalize Python version specification for conda. Accepts “&gt;=3.10”, “3.10”, “3.9.”, etc. If bare like “3.10”, makes it “&gt;=3.10”.*",
+    "crumbs": [
+      "env_gen"
+    ]
+  },
+  {
+    "objectID": "env_gen.html#configuration-collection",
+    "href": "env_gen.html#configuration-collection",
+    "title": "env_gen",
+    "section": "Configuration Collection",
+    "text": "Configuration Collection\n\n\ncollect_values\n\ndef collect_values(\n    cfg, # Configuration section dictionary - TODO: Add type hint\n)-&gt;Tuple[str, List[str], List[str], List[str], List[str]]: # Tuple of (env_name, channels, conda_reqs, pip_reqs, dev_pip_reqs)\n\nCollect configuration values from settings.",
+    "crumbs": [
+      "env_gen"
+    ]
+  },
+  {
+    "objectID": "env_gen.html#yaml-generation",
+    "href": "env_gen.html#yaml-generation",
+    "title": "env_gen",
+    "section": "YAML Generation",
+    "text": "YAML Generation\n\n\nemit_yaml\n\ndef emit_yaml(\n    name:str, # Environment name\n    channels:List[str], # List of conda channels\n    conda_deps:List[str], # List of conda dependencies\n    pip_lines:List[str], # List of pip packages\n)-&gt;str: # YAML formatted string\n\nGenerate environment.yml content. Manual YAML emitter to avoid extra dependencies.",
+    "crumbs": [
+      "env_gen"
+    ]
+  },
+  {
+    "objectID": "env_gen.html#cli-interface",
+    "href": "env_gen.html#cli-interface",
+    "title": "env_gen",
+    "section": "CLI Interface",
+    "text": "CLI Interface\n\n\nmain\n\ndef main(\n    \n):\n\nGenerate environment.yml from nbdev settings.ini.\nReads: lib_name, min_python, conda_channels, conda_requirements, requirements, dev_requirements (all optional). Writes: environment.yml (or stdout). Adds an editable pip install (-e “.[EXTRAS]”) by default.\nExamples: python gen_env_from_settings.py python gen_env_from_settings.py –name myproj-dev –extras dev,docs –out env.yml python gen_env_from_settings.py –no-editable –stdout python gen_env_from_settings.py –no-include-pip-reqs",
+    "crumbs": [
+      "env_gen"
+    ]
+  }
+]
